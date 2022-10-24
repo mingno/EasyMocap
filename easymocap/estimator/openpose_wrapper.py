@@ -26,6 +26,8 @@ def run_openpose(image_root, annot_root, config):
     else:
         cmd = 'bin\\OpenPoseDemo.exe --image_dir {} --write_json {} --display 0'.format(
             os.path.abspath(image_root), os.path.abspath(annot_root))
+    cmd = cmd + ' --number_people_max 2'
+    cmd = cmd + ' --maximize_positives true'
     if config['res'] != 1:
         cmd = cmd + ' --net_resolution -1x{}'.format(int(16*((368*config['res'])//16)))
     if config['hand']:
