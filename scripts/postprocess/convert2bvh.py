@@ -152,12 +152,12 @@ def read_smpl(outname):
     assert os.path.exists(outname), outname
     datas = read_json(outname)
     outputs = []
-    if isinstace(datas, dict):
+    if isinstance(datas, dict):
         datas = datas['annots']
-    for data in datas:
-        for key in ['Rh', 'Th', 'poses', 'shapes']:
-            data[key] = np.array(data[key])
-        outputs.append(data)
+    data = datas[0]
+    for key in ['Rh', 'Th', 'poses', 'shapes']:
+        data[key] = np.array(data[key])
+    outputs.append(data)
     return outputs
 
 def merge_params(param_list, share_shape=True):
